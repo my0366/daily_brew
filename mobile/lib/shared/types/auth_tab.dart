@@ -1,0 +1,1 @@
+enum AuthTabType { signIn, signUp }
