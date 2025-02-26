@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dio_provider.dart';
+part of 'goals_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioHash() => r'540dedb15b6afbd2f5165858daca9a960fd71ab4';
+String _$goalsRepositoryHash() => r'f0be3abce97d3260cf8d2108aeac6142c485a104';
 
-/// See also [dio].
-@ProviderFor(dio)
-final dioProvider = Provider<Dio>.internal(
-  dio,
-  name: r'dioProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$dioHash,
+/// See also [goalsRepository].
+@ProviderFor(goalsRepository)
+final goalsRepositoryProvider = Provider<GoalsRepository>.internal(
+  goalsRepository,
+  name: r'goalsRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$goalsRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef DioRef = ProviderRef<Dio>;
+typedef GoalsRepositoryRef = ProviderRef<GoalsRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
