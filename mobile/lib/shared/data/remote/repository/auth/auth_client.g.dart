@@ -8,10 +8,8 @@ part of 'auth_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _LoginApiClient implements LoginApiClient {
-  _LoginApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'auth';
-  }
+class _AuthApiClient implements AuthApiClient {
+  _AuthApiClient(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -30,7 +28,7 @@ class _LoginApiClient implements LoginApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/sign-up',
+            'auth/sign-up',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -49,10 +47,10 @@ class _LoginApiClient implements LoginApiClient {
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _options = _setStreamType<dynamic>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/sign-in',
+            'auth/sign-in',
             queryParameters: queryParameters,
             data: _data,
           )

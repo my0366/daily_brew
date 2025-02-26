@@ -4,16 +4,16 @@ import 'package:retrofit/retrofit.dart';
 
 part 'auth_client.g.dart';
 
-@RestApi(baseUrl: 'auth')
-abstract class LoginApiClient {
-  factory LoginApiClient(Dio dio, {String baseUrl}) = _LoginApiClient;
+@RestApi()
+abstract class AuthApiClient {
+  factory AuthApiClient(Dio dio, {String baseUrl}) = _AuthApiClient;
 
-  @POST("/sign-up")
+  @POST("auth/sign-up")
   Future<dynamic> signUp(
     @Body() AuthDto body,
   );
 
-  @POST("/sign-in")
+  @GET("auth/sign-in")
   Future<dynamic> signIn(
     @Body() AuthDto body,
   );
