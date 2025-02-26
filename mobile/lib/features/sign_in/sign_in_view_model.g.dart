@@ -6,7 +6,7 @@ part of 'sign_in_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInNotifierHash() => r'fca8f790bfc59b919e5c3dae336a7a9deded4c43';
+String _$signInNotifierHash() => r'9d6b9cc29f8af1759e346518b34e42f8d80ff724';
 
 /// See also [SignInNotifier].
 @ProviderFor(SignInNotifier)

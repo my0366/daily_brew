@@ -1,5 +1,6 @@
 import 'package:daily_brew/dtos/auth_dto.dart';
 import 'package:daily_brew/features/sign_in/sign_in_state.dart';
+import 'package:daily_brew/shared/data/local/session_storage.dart';
 import 'package:daily_brew/shared/data/remote/repository/auth/auth_client.dart';
 import 'package:daily_brew/shared/data/remote/repository/auth/auth_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -13,7 +14,13 @@ class SignInNotifier extends AutoDisposeNotifier<SignInState> {
     return SignInState.initial();
   }
 
-  Future<void> signIn() async {
-    final result = await ref.read(loginRepositoryProvider).signUp(state.authDto);
+  Future<dynamic> signIn() async {
+    final result = await ref.read(authRepositoryProvider).signIn(state.authDto);
+    switch (result["statusCode"]) {
+      case 200:
+        SessionStorage.storeAccessToken(result["data"]['accessToken']);
+        SessionStorage.storeRefreshToken(result["data"]['refreshToken']);
+    }
+    return result;
   }
 }

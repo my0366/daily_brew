@@ -52,7 +52,12 @@ class _AuthPageState extends ConsumerState<SignInUI> {
             height: 50,
             onPressed: () {
               if (formKey.currentState!.saveAndValidate()) {
-                context.go('/home');
+                ref.read(signInNotifierProvider.notifier).signIn().then((value) {
+                  if (value) {
+                    context.go('/home');
+                  }
+                });
+
                 // ref.read(signInNotifierProvider.notifier).signIn();
               } else {
                 print('validation failed');

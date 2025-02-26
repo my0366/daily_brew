@@ -1,7 +1,9 @@
+import 'package:daily_brew/features/sign_up/sign_up_view_model.dart';
 import 'package:daily_brew/shared/util/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 class SignUpUI extends ConsumerStatefulWidget {
@@ -59,7 +61,11 @@ class _SignUpFeatureState extends ConsumerState<SignUpUI> {
             height: 50,
             onPressed: () {
               if (formKey.currentState!.saveAndValidate()) {
-                print('validation succeeded with ${formKey.currentState!.value}');
+                ref.read(signUpNotifierProvider.notifier).signUp().then((value) {
+                  context.go('/home');
+                });
+
+                // ref.read(signInNotifierProvider.notifier).signIn();
               } else {
                 print('validation failed');
               }
