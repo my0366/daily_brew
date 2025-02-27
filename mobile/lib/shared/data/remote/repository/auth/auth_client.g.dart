@@ -47,7 +47,7 @@ class _AuthApiClient implements AuthApiClient {
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _options = _setStreamType<dynamic>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             'auth/sign-in',

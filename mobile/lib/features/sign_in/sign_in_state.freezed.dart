@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignInState {
   AuthDto get authDto => throw _privateConstructorUsedError;
+  GlobalKey<ShadFormState> get signUpFormKey =>
+      throw _privateConstructorUsedError;
   TextEditingController get userIdController =>
       throw _privateConstructorUsedError;
   TextEditingController get passwordController =>
@@ -39,6 +41,7 @@ abstract class $SignInStateCopyWith<$Res> {
   @useResult
   $Res call({
     AuthDto authDto,
+    GlobalKey<ShadFormState> signUpFormKey,
     TextEditingController userIdController,
     TextEditingController passwordController,
   });
@@ -60,6 +63,7 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   @override
   $Res call({
     Object? authDto = null,
+    Object? signUpFormKey = null,
     Object? userIdController = null,
     Object? passwordController = null,
   }) {
@@ -70,6 +74,11 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
                     ? _value.authDto
                     : authDto // ignore: cast_nullable_to_non_nullable
                         as AuthDto,
+            signUpFormKey:
+                null == signUpFormKey
+                    ? _value.signUpFormKey
+                    : signUpFormKey // ignore: cast_nullable_to_non_nullable
+                        as GlobalKey<ShadFormState>,
             userIdController:
                 null == userIdController
                     ? _value.userIdController
@@ -97,6 +106,7 @@ abstract class _$$SignInStateImplCopyWith<$Res>
   @useResult
   $Res call({
     AuthDto authDto,
+    GlobalKey<ShadFormState> signUpFormKey,
     TextEditingController userIdController,
     TextEditingController passwordController,
   });
@@ -117,6 +127,7 @@ class __$$SignInStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? authDto = null,
+    Object? signUpFormKey = null,
     Object? userIdController = null,
     Object? passwordController = null,
   }) {
@@ -127,6 +138,11 @@ class __$$SignInStateImplCopyWithImpl<$Res>
                 ? _value.authDto
                 : authDto // ignore: cast_nullable_to_non_nullable
                     as AuthDto,
+        signUpFormKey:
+            null == signUpFormKey
+                ? _value.signUpFormKey
+                : signUpFormKey // ignore: cast_nullable_to_non_nullable
+                    as GlobalKey<ShadFormState>,
         userIdController:
             null == userIdController
                 ? _value.userIdController
@@ -147,6 +163,7 @@ class __$$SignInStateImplCopyWithImpl<$Res>
 class _$SignInStateImpl implements _SignInState {
   const _$SignInStateImpl({
     required this.authDto,
+    required this.signUpFormKey,
     required this.userIdController,
     required this.passwordController,
   });
@@ -154,13 +171,15 @@ class _$SignInStateImpl implements _SignInState {
   @override
   final AuthDto authDto;
   @override
+  final GlobalKey<ShadFormState> signUpFormKey;
+  @override
   final TextEditingController userIdController;
   @override
   final TextEditingController passwordController;
 
   @override
   String toString() {
-    return 'SignInState(authDto: $authDto, userIdController: $userIdController, passwordController: $passwordController)';
+    return 'SignInState(authDto: $authDto, signUpFormKey: $signUpFormKey, userIdController: $userIdController, passwordController: $passwordController)';
   }
 
   @override
@@ -169,6 +188,8 @@ class _$SignInStateImpl implements _SignInState {
         (other.runtimeType == runtimeType &&
             other is _$SignInStateImpl &&
             (identical(other.authDto, authDto) || other.authDto == authDto) &&
+            (identical(other.signUpFormKey, signUpFormKey) ||
+                other.signUpFormKey == signUpFormKey) &&
             (identical(other.userIdController, userIdController) ||
                 other.userIdController == userIdController) &&
             (identical(other.passwordController, passwordController) ||
@@ -176,8 +197,13 @@ class _$SignInStateImpl implements _SignInState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, authDto, userIdController, passwordController);
+  int get hashCode => Object.hash(
+    runtimeType,
+    authDto,
+    signUpFormKey,
+    userIdController,
+    passwordController,
+  );
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.
@@ -191,12 +217,15 @@ class _$SignInStateImpl implements _SignInState {
 abstract class _SignInState implements SignInState {
   const factory _SignInState({
     required final AuthDto authDto,
+    required final GlobalKey<ShadFormState> signUpFormKey,
     required final TextEditingController userIdController,
     required final TextEditingController passwordController,
   }) = _$SignInStateImpl;
 
   @override
   AuthDto get authDto;
+  @override
+  GlobalKey<ShadFormState> get signUpFormKey;
   @override
   TextEditingController get userIdController;
   @override

@@ -9,12 +9,8 @@ abstract class AuthApiClient {
   factory AuthApiClient(Dio dio, {String baseUrl}) = _AuthApiClient;
 
   @POST("auth/sign-up")
-  Future<dynamic> signUp(
-    @Body() AuthDto body,
-  );
+  Future<dynamic> signUp(@Body() AuthDto body);
 
-  @GET("auth/sign-in")
-  Future<dynamic> signIn(
-    @Body() AuthDto body,
-  );
+  @POST("auth/sign-in")
+  Future<dynamic> signIn(@Body() AuthDto body);
 }

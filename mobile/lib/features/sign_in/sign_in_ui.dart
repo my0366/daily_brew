@@ -14,13 +14,12 @@ class SignInUI extends ConsumerStatefulWidget {
 }
 
 class _AuthPageState extends ConsumerState<SignInUI> {
-  final formKey = GlobalKey<ShadFormState>();
-
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(signInNotifierProvider);
+    final notifier = ref.read(signInNotifierProvider.notifier);
     return ShadForm(
-      key: formKey,
+      key: state.signUpFormKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -30,6 +29,7 @@ class _AuthPageState extends ConsumerState<SignInUI> {
             controller: state.userIdController,
             style: ShadTheme.of(context).textTheme.p,
             placeholderStyle: ShadTheme.of(context).textTheme.p,
+            onChanged: notifier.updateUserId,
             label: Text('아이디', style: ShadTheme.of(context).textTheme.large),
             placeholder: const Text('아이디를 입력해 주세요'),
             validator: (userId) => validateUserId(userId),
@@ -39,6 +39,7 @@ class _AuthPageState extends ConsumerState<SignInUI> {
             id: 'password',
             obscuringCharacter: '*',
             controller: state.passwordController,
+            onChanged: notifier.updatePassword,
             style: ShadTheme.of(context).textTheme.p,
             placeholderStyle: ShadTheme.of(context).textTheme.p,
             obscureText: true,
@@ -51,10 +52,14 @@ class _AuthPageState extends ConsumerState<SignInUI> {
             width: double.infinity,
             height: 50,
             onPressed: () {
-              if (formKey.currentState!.saveAndValidate()) {
+              if (state.signUpFormKey.currentState!.saveAndValidate()) {
                 ref.read(signInNotifierProvider.notifier).signIn().then((value) {
-                  if (value) {
-                    context.go('/home');
+                  switch (value) {
+                    case 201:
+                      context.go('/home');
+                      break;
+                    default:
+                      print('error');
                   }
                 });
 

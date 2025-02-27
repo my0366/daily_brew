@@ -1,16 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'auth_dto.g.dart';
+
+@JsonSerializable()
 class AuthDto {
-  final String userId;
-  final String password;
+  String userId;
+  String password;
 
-  AuthDto({
-    required this.userId,
-    required this.password,
-  });
+  AuthDto({required this.userId, required this.password});
 
-  Map<String, dynamic> toJson() {
-    return {
-      'userId': userId,
-      'password': password,
-    };
-  }
+  factory AuthDto.fromJson(Map<String, dynamic> json) => _$AuthDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AuthDtoToJson(this);
 }

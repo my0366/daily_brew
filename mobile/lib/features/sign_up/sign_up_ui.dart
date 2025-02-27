@@ -16,9 +16,10 @@ class SignUpUI extends ConsumerStatefulWidget {
 class _SignUpFeatureState extends ConsumerState<SignUpUI> {
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<ShadFormState>();
+    final state = ref.watch(signUpNotifierProvider);
+    final notifier = ref.read(signUpNotifierProvider.notifier);
     return ShadForm(
-      key: formKey,
+      key: state.signUpFormKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -28,6 +29,7 @@ class _SignUpFeatureState extends ConsumerState<SignUpUI> {
             style: ShadTheme.of(context).textTheme.p,
             placeholderStyle: ShadTheme.of(context).textTheme.p,
             label: Text('아이디', style: ShadTheme.of(context).textTheme.large),
+            onChanged: notifier.updateUserId,
             placeholder: const Text('아이디를 입력해 주세요'),
             validator: (userId) => validateUserId(userId),
           ),
@@ -38,6 +40,7 @@ class _SignUpFeatureState extends ConsumerState<SignUpUI> {
             style: ShadTheme.of(context).textTheme.p,
             placeholderStyle: ShadTheme.of(context).textTheme.p,
             obscureText: true,
+            onChanged: notifier.updatePassword,
             label: Text('비밀번호', style: ShadTheme.of(context).textTheme.large),
             placeholder: const Text('비밀번호를 입력해 주세요.'),
             validator: (password) => validateUserPassword(password),
@@ -48,7 +51,7 @@ class _SignUpFeatureState extends ConsumerState<SignUpUI> {
             label: Text('비밀번호 확인', style: ShadTheme.of(context).textTheme.large.copyWith()),
             placeholder: const Text('비밀번호를 다시 입력해 주세요.'),
             validator: (confirmPassword) {
-              final password = formKey.currentState!.value['password'];
+              final password = state.signUpFormKey.currentState!.value['password'];
               if (confirmPassword != password) {
                 return '비밀번호가 일치하지 않습니다.';
               }
@@ -60,7 +63,7 @@ class _SignUpFeatureState extends ConsumerState<SignUpUI> {
             width: double.infinity,
             height: 50,
             onPressed: () {
-              if (formKey.currentState!.saveAndValidate()) {
+              if (state.signUpFormKey.currentState!.saveAndValidate()) {
                 ref.read(signUpNotifierProvider.notifier).signUp().then((value) {
                   context.go('/home');
                 });
