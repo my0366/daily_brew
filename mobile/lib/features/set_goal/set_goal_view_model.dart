@@ -18,16 +18,16 @@ class SetGoalNotifier extends AutoDisposeNotifier<SetGoalState> {
 
   Future<dynamic> setGoal() async {
     final result = await ref.read(goalsRepositoryProvider).createGoal(state.createGoalDto);
-    print(result);
     return result;
   }
 
   void setDate(ShadDateTimeRange? dateTimeRange) {
     state = state.copyWith(
-        createGoalDto: state.createGoalDto.copyWith(
-      startAt: dateTimeRange?.start,
-      endAt: dateTimeRange?.end,
-    ));
+      createGoalDto:
+          state.createGoalDto
+            ..startAt = dateTimeRange?.start
+            ..endAt = dateTimeRange?.end,
+    );
   }
 
   void decreaseTargetCup() {
@@ -35,21 +35,13 @@ class SetGoalNotifier extends AutoDisposeNotifier<SetGoalState> {
     if (targetCup > 0) {
       targetCup--;
     }
-    state = state.copyWith(
-      createGoalDto: state.createGoalDto.copyWith(
-        target: targetCup,
-      ),
-    );
+    state = state.copyWith(createGoalDto: state.createGoalDto..target = targetCup);
   }
 
   void increaseTargetCup() {
     int targetCup = state.createGoalDto.target;
     targetCup++;
-    state = state.copyWith(
-      createGoalDto: state.createGoalDto.copyWith(
-        target: targetCup,
-      ),
-    );
+    state = state.copyWith(createGoalDto: state.createGoalDto..target = targetCup);
   }
 
   bool isValid() {

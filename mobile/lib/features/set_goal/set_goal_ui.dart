@@ -41,9 +41,7 @@ class SetGoalUI extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ShadButton(
-              decoration: ShadDecoration(
-                border: ShadBorder(radius: BorderRadius.circular(25)),
-              ),
+              decoration: ShadDecoration(border: ShadBorder(radius: BorderRadius.circular(25))),
               width: 50,
               height: 50,
               onPressed: () {
@@ -51,19 +49,14 @@ class SetGoalUI extends ConsumerWidget {
               },
               child: Text(
                 "-",
-                style: ShadTheme.of(context).textTheme.large.copyWith(
-                      color: ShadTheme.of(context).colorScheme.background,
-                    ),
+                style: ShadTheme.of(
+                  context,
+                ).textTheme.large.copyWith(color: ShadTheme.of(context).colorScheme.background),
               ),
             ),
-            Text(
-              "${state.createGoalDto.target.toString()} 잔",
-              style: ShadTheme.of(context).textTheme.large,
-            ),
+            Text("${state.createGoalDto.target.toString()} 잔", style: ShadTheme.of(context).textTheme.large),
             ShadButton(
-              decoration: ShadDecoration(
-                border: ShadBorder(radius: BorderRadius.circular(25)),
-              ),
+              decoration: ShadDecoration(border: ShadBorder(radius: BorderRadius.circular(25))),
               width: 50,
               height: 50,
               onPressed: () {
@@ -71,9 +64,9 @@ class SetGoalUI extends ConsumerWidget {
               },
               child: Text(
                 "+",
-                style: ShadTheme.of(context).textTheme.large.copyWith(
-                      color: ShadTheme.of(context).colorScheme.background,
-                    ),
+                style: ShadTheme.of(
+                  context,
+                ).textTheme.large.copyWith(color: ShadTheme.of(context).colorScheme.background),
               ),
             ),
           ],
@@ -84,16 +77,14 @@ class SetGoalUI extends ConsumerWidget {
           height: 50,
           enabled: ref.watch(setGoalNotifierProvider.notifier).isValid(),
           onPressed: () {
-            ref.read(setGoalNotifierProvider.notifier).setGoal().then(
-              (value) {
+            ref.read(setGoalNotifierProvider.notifier).setGoal().then((value) {
+              if (value != null) {
+                context.pop();
                 context.go('/home');
-              },
-            );
+              }
+            });
           },
-          child: Text(
-            '로그인',
-            style: ShadTheme.of(context).textTheme.h4.copyWith(color: Colors.white),
-          ),
+          child: Text('로그인', style: ShadTheme.of(context).textTheme.h4.copyWith(color: Colors.white)),
         ),
       ],
     );

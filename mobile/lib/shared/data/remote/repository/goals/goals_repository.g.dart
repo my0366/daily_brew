@@ -13,7 +13,10 @@ String _$goalsRepositoryHash() => r'f0be3abce97d3260cf8d2108aeac6142c485a104';
 final goalsRepositoryProvider = Provider<GoalsRepository>.internal(
   goalsRepository,
   name: r'goalsRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$goalsRepositoryHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$goalsRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
